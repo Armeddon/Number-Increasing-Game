@@ -410,6 +410,10 @@ mod turn {
                             false
                     };
                     let actual_value = if squared {value.pow(2)} else {value};
+                    if actual_value > 0 && number.value == 0 {
+                        game.board.tiles[y1-1][x1-1].number = None;
+                        return Ok(());
+                    }
                     if actual_value > number.value {
                         value -= if squared {1} else {number.value};
                         game.board.tiles[y-1][x-1].number = Some(Number {
